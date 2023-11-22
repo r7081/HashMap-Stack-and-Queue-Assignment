@@ -1,0 +1,222 @@
+﻿Q1. Implement a Map in java which takes the input and print the list in sorted order based on key
+Input: ASS_Code1.java 5- Rahul, 7 Lakshman, 1 Ram, 4 Krrish, 2 Lakshay, 
+Output {1=Ram, 2=Lakshay, 4=Krrish, 5=Rahul, 7=lakshman}
+import java.util.*;
+import java.util.Map;
+import java.io.*;
+  
+public class HashMapClass {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements of Key-pair: ");  
+        
+        int n = sc.nextInt();
+
+
+       
+        TreeMap<Integer, String> tm = new TreeMap<>();
+
+
+        System.out.print("Enter the elements in Key and value : ");  
+        for(int i=0;i<n;i++){
+            int key = sc.nextInt();
+            String value = sc.next();
+            tm.put(key, value);
+        }
+
+
+        System.out.println("The value of Map is: " + tm);
+
+
+    }
+}
+
+
+Q2.Implement a Map in java which takes the input and print the list in sorted order based on value
+import java.util.*;
+import java.util.Map;
+import java.io.*;
+  
+public class HashMapClass {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements of Key-pair: ");  
+        
+        int n = sc.nextInt();
+
+
+       
+        TreeMap<String, Integer> tm = new TreeMap<>();
+
+
+        System.out.print("Enter the elements in Key and value : ");  
+        for(int i=0;i<n;i++){
+            int key = sc.nextInt();
+            String value = sc.next();
+            tm.put(value, key);
+        }
+
+
+        System.out.println("The value of Map is: " + tm);
+
+
+    }
+}
+
+
+Q3. Detect if an Array contains a duplicate element. At Most 1 duplicate would be there
+import java.util.*;
+import java.util.Map;
+import java.io.*;
+  
+public class HashMapClass {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements of array: ");  
+        
+        int n = sc.nextInt();
+
+
+        int[] arr = new int[n];
+
+
+        System.out.print("Enter the elements of array: ");  
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
+
+
+        HashMap<Integer, Integer> tm = new HashMap<>();
+        int answer = 0;
+        for(int i=0;i<n;i++){
+            if(tm.containsKey(arr[i])){
+                System.out.println("Yes");
+                answer =1;
+                break;
+            }
+            tm.put(arr[i], 1);
+        }
+
+
+        if(answer == 0)
+            System.out.println("No");
+
+
+    }
+}
+Approach 
+  We would start traversing the array. As we move ahead, we would keep adding the element in map_ s If we found any element is already added in the map that means we have found our duplicate_ s If no element is found then there is no duplicate.
+
+
+Q4. Given an array nums of size n, return the majority element.
+import java.util.*;
+import java.util.Map;
+import java.io.*;
+  
+public class HashMapClass {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of elements of array: ");  
+        
+        int n = sc.nextInt();
+
+
+        int[] arr = new int[n];
+
+
+        System.out.print("Enter the elements of array: ");  
+        for(int i=0;i<n;i++){
+            arr[i] = sc.nextInt();
+        }
+
+
+        TreeMap<Integer, Integer> tm = new TreeMap<>();
+
+
+        for(int i=0;i<n;i++){
+            tm.put(arr[i], 1);
+        }
+
+
+        System.out.println("Largest Element of Map is : " + tm.lastEntry().getKey());
+
+
+    }
+}
+Approach: ' We would start traversi(3 the array a(d will store each eleme(t i(to the TreeMap.2 ' We would simply retur( the last key of map.
+
+
+
+
+Q5. Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise. each letter in magazine can only be used once in ransomNote.
+import java.util.*;
+import java.util.Map;
+import java.io.*;
+  
+public class HashMapClass {
+    public static void main(String[] args)
+    {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the RansomNote String: ");  
+        
+        String s=sc.nextLine();
+
+
+        System.out.print("Enter the Magazine String: ");  
+        
+        String r=sc.nextLine();
+
+
+
+
+        HashMap<Character, Integer> hm1 = new HashMap<>();
+
+
+        for(int i=0;i<s.length(); i++ ){
+            if(hm1.containsKey(s.charAt(i))) {
+                hm1.put(s.charAt(i), hm1.get(s.charAt(i))+1);
+            }
+            else
+                hm1.put(s.charAt(i), 1);
+        }     
+
+
+        HashMap<Character, Integer> hm2 = new HashMap<>();
+
+
+        for(int i=0;i<r.length(); i++ ){
+            if(hm2.containsKey(r.charAt(i))) {
+                hm2.put(r.charAt(i), hm2.get(r.charAt(i))+1);
+            }
+            else
+                hm2.put(r.charAt(i), 1);
+        }     
+
+
+        
+
+
+        Integer answer = -1;
+        for(Map.Entry<Character, Integer> e: hm1.entrySet()) {
+
+
+            if(e.getValue() > hm2.get(e.getKey())){
+
+
+                System.out.println("false");
+                answer = 1;
+                break;
+            }
+        }
+        if(answer == -1)
+            System.out.println("True");
+
+
+    }
+}
+Approach:
+We would store both words i( two differe(t maps o(e by o(e a(d update each character freque(cy ' The( we would start iterati(3 over ra(somNote map a(d would check that for each key i( ra(somNote map, the same key should be prese(t i( ma3azi(eMap a(d value > ra(somNote map¤s value ' If we fi(d a(y eleme(t (ot followi(3 this co(ditio( we would retur( false.2 ' If we iterate the map completely the a(swer is Yes.
